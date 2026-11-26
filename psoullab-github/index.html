@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Psoul Lab">
+<meta property="og:description" content="Prevención, readaptación y rendimiento online para deportistas.">
+<meta property="og:image" content="https://psoullab.es/img/og.jpg">
+<meta property="og:url" content="https://psoullab.es/">
+<style>html{color-scheme:light}body{margin:0}img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+<title>Psoul Lab</title>
+<meta name="description" content="Prevención, readaptación y rendimiento online para deportistas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=IBM+Plex+Mono:wght@500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: banda oscura de laboratorio arriba (tesis + símbolo), secciones claras en columna ancha, tarifas en tres columnas, cierre oscuro. */
+:root{
+  --bg:#f4eee5; --bg-2:#ebe2d5; --fg:#2a211b; --muted:#6b5b4e; --line:#ddd0bf;
+  --accent:#a9502f; --olive:#5e6236; --clay:#d29b74;
+  --lab:#241d19; --lab-ink:#f1e9de; --lab-muted:#b8a897; --lab-accent:#e08a62; --lab-line:#3a2f29;
+  --f-display:"Fraunces",Georgia,"Times New Roman",serif;
+  --f-text:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --w:1120px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#1c1714; --bg-2:#241d19; --fg:#f1e9de; --muted:#b8a897; --line:#3a2f29;
+  --accent:#e08a62; --olive:#b4b97f; --clay:#d29b74; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1c1714; --bg-2:#241d19; --fg:#f1e9de; --muted:#b8a897; --line:#3a2f29;
+  --accent:#e08a62; --olive:#b4b97f; --clay:#d29b74; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-text);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;letter-spacing:-0.02em;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px}
+.wrap{max-width:var(--w);margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.eyebrow{font-family:var(--f-mono);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent)}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--f-text);font-weight:600;font-size:16px;text-decoration:none;padding:14px 22px;border-radius:4px;border:1.5px solid currentColor;transition:background .2s,color .2s}
+.btn-solid{background:var(--lab-accent);border-color:var(--lab-accent);color:#241d19}
+.btn-solid:hover{background:#f0a27e;border-color:#f0a27e}
+
+/* Cabecera y hero: siempre en noche de laboratorio */
+.hero{background:var(--lab);color:var(--lab-ink);margin-top:calc(-1 * env(safe-area-inset-top,0px));padding-top:env(safe-area-inset-top,0px)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:22px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;font-family:var(--f-mono);font-size:14px;letter-spacing:.24em;color:var(--lab-accent)}
+.nav-links{display:flex;gap:28px;font-size:15px}
+.nav-links a{text-decoration:none;color:var(--lab-muted)}
+.nav-links a:hover{color:var(--lab-ink)}
+.hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center;padding-block:56px 88px}
+.hero-grid>*{min-width:0}
+.hero .eyebrow{color:var(--lab-accent)}
+.hero h1{font-size:clamp(44px,7vw,88px);line-height:1.02;margin-top:20px}
+.hero h1 em{font-style:italic;color:var(--lab-accent)}
+.hero .lead{font-size:clamp(18px,2vw,21px);color:var(--lab-ink);max-width:34em;margin-top:28px}
+.hero-cta{display:flex;flex-wrap:wrap;align-items:center;gap:20px;margin-top:36px}
+.hero-cta small{font-family:var(--f-mono);font-size:13px;letter-spacing:.08em;color:var(--lab-muted)}
+.symbol-big{width:100%;max-width:360px;justify-self:center}
+.symbol-big .arc{stroke-dasharray:0 377;animation:draw 1.6s .2s cubic-bezier(.6,.1,.2,1) forwards}
+@keyframes draw{to{stroke-dasharray:270.7 377}}
+@media (prefers-reduced-motion:reduce){.symbol-big .arc{animation:none;stroke-dasharray:270.7 377}}
+
+/* Secciones */
+section{padding-block:96px}
+.sec-head{display:grid;gap:16px;max-width:40em;margin-bottom:48px}
+.sec-head h2{font-size:clamp(34px,4.4vw,52px);line-height:1.08}
+.sec-head p{color:var(--muted);font-size:18px}
+
+/* Tres caminos: el orden importa (prevención primero) */
+.paths{display:grid;grid-template-columns:repeat(3,1fr);border-top:1.5px solid var(--fg)}
+.path{padding:28px 28px 32px 0;display:grid;gap:12px;align-content:start}
+.path+.path{padding-left:28px;border-left:1px solid var(--line)}
+.path .tag{font-family:var(--f-mono);font-size:13px;letter-spacing:.14em;color:var(--olive)}
+.path h3{font-size:30px}
+.path p{color:var(--muted)}
+
+/* Cómo funciona */
+.how{background:var(--bg-2)}
+.steps{display:grid;gap:0;counter-reset:s}
+.step{display:grid;grid-template-columns:120px 1fr;gap:32px;padding-block:36px;border-top:1px solid var(--line)}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step>*{min-width:0}
+.step .n{font-family:var(--f-mono);font-size:44px;line-height:1;color:var(--accent)}
+.step h3{font-size:30px;margin-bottom:10px}
+.step p{color:var(--muted);max-width:40em}
+.rodt{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}
+.rodt div{border:1px solid var(--line);border-radius:4px;padding:14px 16px;background:var(--bg)}
+.rodt b{display:block;font-family:var(--f-mono);font-weight:500;font-size:22px;color:var(--accent)}
+.rodt span{font-size:15px;color:var(--fg)}
+.rodt .r b{color:var(--olive)}
+
+/* Símbolo */
+.sym-grid{display:grid;grid-template-columns:280px 1fr;gap:64px;align-items:center}
+.sym-grid>*{min-width:0}
+.sym-mark{display:block;width:100%;max-width:280px;height:auto;aspect-ratio:1}
+.sym-legend{display:grid;gap:24px}
+.sym-legend div{display:grid;grid-template-columns:150px 1fr;gap:20px;padding-top:18px;border-top:1px solid var(--line)}
+.sym-legend dt{font-family:var(--f-display);font-size:24px}
+.sym-legend dd{margin:0;color:var(--muted)}
+
+/* Tarifas */
+.prices{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch}
+.price{display:flex;flex-direction:column;gap:18px;padding:32px 28px;border:1px solid var(--line);border-radius:6px;background:var(--bg)}
+.price.featured{border:1.5px solid var(--accent)}
+.price .tag{font-family:var(--f-mono);font-size:13px;letter-spacing:.14em;color:var(--olive)}
+.price h3{font-size:30px}
+.amount{font-family:var(--f-display);font-size:56px;line-height:1;font-variant-numeric:tabular-nums}
+.amount small{font-family:var(--f-text);font-size:16px;color:var(--muted);margin-left:6px}
+.price ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;border-top:1px solid var(--line);padding-top:18px;flex:1;align-content:start}
+.price li{position:relative;padding-left:22px;font-size:16px}
+.price li::before{content:"";position:absolute;left:0;top:.62em;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+.price .quarter{font-family:var(--f-mono);font-size:13px;letter-spacing:.06em;color:var(--muted);margin-top:-10px}
+.price .note{font-size:14px;color:var(--muted)}
+.price-foot{margin-top:28px;color:var(--muted);font-size:15px;display:flex;flex-wrap:wrap;gap:8px 28px}
+.lines{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.line{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:32px 28px;display:grid;gap:16px;align-content:start}
+.line-name{font-family:var(--f-mono);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.line-name b{font-family:var(--f-display);font-size:34px;letter-spacing:-.01em;text-transform:none;color:var(--accent);font-weight:400;display:block;margin-top:6px}
+.line-for{font-size:17px;color:var(--fg)}
+.line dl{margin:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.line dl div{display:grid;grid-template-columns:120px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
+.line dt{font-family:var(--f-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--olive);padding-top:4px}
+.line dd{margin:0;font-size:16px;color:var(--muted)}
+.line-note{font-size:14px;color:var(--muted)}
+.lines-other{margin-top:24px;color:var(--muted);font-size:16px}
+.deposit{margin-top:20px;font-size:16px;color:var(--fg);padding:16px 20px;border:1px solid var(--line);border-radius:4px;background:var(--bg)}
+@media (max-width:860px){.lines{grid-template-columns:1fr}.line dl div{grid-template-columns:1fr;gap:4px}}
+.price-foot span{font-family:var(--f-mono);font-size:13px;letter-spacing:.06em}
+.runners{margin-top:40px;padding:28px 0 0;border-top:1.5px solid var(--fg);display:grid;grid-template-columns:240px 1fr 1fr;gap:16px 40px}
+.runners>*{min-width:0}
+.runners p:not(.eyebrow){color:var(--muted);font-size:16px}
+.runners strong{color:var(--fg);font-weight:600}
+@media (max-width:860px){.runners{grid-template-columns:1fr}}
+.val-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 28px;margin-top:40px;max-width:820px}
+.val-form .f{display:grid;gap:8px;min-width:0;border:0;padding:0;margin:0}
+.val-form .f-wide{grid-column:1/-1}
+.val-form .f>span,.val-form legend{font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--lab-muted);padding:0;margin-bottom:8px}
+.val-form input[type=text],.val-form input[type=number],.val-form select{width:100%;font:inherit;font-size:17px;color:var(--lab-ink);background:#2e2520;border:1px solid var(--lab-line);border-radius:4px;padding:12px 14px;color-scheme:dark}
+.val-form input::placeholder{color:#7d6e62}
+.val-form input:focus,.val-form select:focus{outline:2px solid var(--lab-accent);outline-offset:1px;border-color:transparent}
+.val-form .invalid{border-color:var(--lab-accent)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chips label{position:relative;cursor:pointer}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips span{display:inline-block;padding:10px 16px;border:1px solid var(--lab-line);border-radius:999px;font-size:15px;color:var(--lab-ink)}
+.chips input:checked+span{background:var(--lab-accent);border-color:var(--lab-accent);color:#241d19;font-weight:600}
+.chips input:focus-visible+span{outline:2px solid var(--lab-accent);outline-offset:2px}
+.send-row{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:8px}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5;color:var(--lab-muted);cursor:pointer}
+.consent input{margin-top:4px;width:18px;height:18px;accent-color:var(--lab-accent);flex-shrink:0}
+.consent a,.legal a,footer a{color:var(--lab-ink)}
+.form-msg{color:var(--lab-accent);font-size:15px;margin:0}
+.close .legal{font-size:13px;color:var(--lab-muted);margin-top:0}
+.close .alt-contact{margin-top:32px;font-size:15px;color:var(--lab-muted)}
+.alt-contact a{color:var(--lab-ink)}
+@media (max-width:860px){.val-form{grid-template-columns:1fr}}
+
+/* Equipo */
+.team{display:grid;grid-template-columns:repeat(2,minmax(0,420px));gap:40px}
+.person{padding:0 0 28px;display:grid;gap:10px;align-content:start}
+.person img{width:100%;max-width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;border-radius:4px;margin-bottom:14px;background:var(--bg-2)}
+.person h3{font-size:28px}
+.person .role{font-family:var(--f-mono);font-size:13px;letter-spacing:.12em;color:var(--olive);text-transform:uppercase}
+.person p{color:var(--muted)}
+
+/* Cierre */
+.close{background:var(--lab);color:var(--lab-ink);text-align:left}
+.close h2{font-size:clamp(36px,5vw,60px);line-height:1.05;max-width:14em}
+.close p{color:var(--lab-muted);font-size:18px;margin-top:20px;max-width:34em}
+.close .hero-cta small{color:var(--lab-muted)}
+.handle{font-family:var(--f-mono);font-size:15px;color:var(--lab-accent);letter-spacing:.04em}
+.contact-list{display:flex;flex-wrap:wrap;gap:20px 56px;margin:44px 0 0;padding-top:24px;border-top:1px solid var(--lab-line)}
+.contact-list dt{font-family:var(--f-mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--lab-muted)}
+.contact-list dd{margin:6px 0 0;font-size:22px;font-variant-numeric:tabular-nums;user-select:all;color:var(--lab-ink)}
+footer{background:var(--lab);color:var(--lab-muted);border-top:1px solid var(--lab-line);font-size:14px}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:28px}
+
+@media (max-width:860px){
+  .hero-grid,.sym-grid{grid-template-columns:1fr}
+  .symbol-big{max-width:220px;justify-self:start;order:-1}
+  .paths,.prices,.team{grid-template-columns:1fr}
+  .path,.path+.path{padding:24px 0;border-left:0;border-bottom:1px solid var(--line)}
+  .step{grid-template-columns:1fr;gap:14px}
+  .rodt{grid-template-columns:repeat(2,1fr)}
+  .sym-grid svg{max-width:200px}
+  .sym-legend div{grid-template-columns:1fr;gap:6px}
+  .nav-links{display:none}
+  section{padding-block:72px}
+}
+</style>
+</head>
+<body>
+
+
+<header class="hero">
+  <div class="wrap">
+    <nav class="nav" aria-label="Principal">
+      <a class="brand" href="#inicio">
+        <svg width="28" height="28" viewBox="0 0 140 140" aria-hidden="true"><path d="M70 10 A60 60 0 1 1 11.20 81.96" fill="none" stroke="#e08a62" stroke-width="12" stroke-linecap="round"/><circle cx="70" cy="70" r="40" fill="#e08a62"/></svg>
+        PSOUL LAB
+      </a>
+      <div class="nav-links">
+        <a href="#servicios">Servicios</a>
+        <a href="#lineas">Líneas</a>
+        <a href="#como-funciona">Cómo funciona</a>
+        <a href="#tarifas">Tarifas</a>
+        <a href="#equipo">Equipo</a>
+      </div>
+    </nav>
+    <div class="hero-grid" id="inicio">
+      <div>
+        <p class="eyebrow">Prevención · Readaptación · Rendimiento</p>
+        <h1>Primero regular.<br><em>Después apuntar.</em></h1>
+        <p class="lead">Entrenamiento online para deportistas: para no lesionarte, para volver si ya te ha pasado y para rendir sin romperte. Trabajamos con pocas personas, con criterio y con tiempo.</p>
+        <div class="hero-cta">
+          <a class="btn btn-solid" href="#contacto">Pide tu valoración</a>
+          <small>Plazas para enero</small>
+        </div>
+      </div>
+      <svg class="symbol-big" viewBox="0 0 140 140" role="img" aria-label="Símbolo de Psoul Lab: un disco rodeado por un arco abierto">
+        <path class="arc" d="M70 10 A60 60 0 1 1 11.20 81.96" fill="none" stroke="#e08a62" stroke-width="12" stroke-linecap="round"/>
+        <circle cx="70" cy="70" r="40" fill="#e08a62"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="servicios">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Servicios</p>
+        <h2>Tres caminos, siempre en este orden.</h2>
+        <p>Empezamos por prevenir. Si la lesión ya ha llegado, te acompañamos de vuelta. Y cuando el cuerpo está listo, apuntamos al rendimiento.</p>
+      </div>
+      <div class="paths">
+        <article class="path">
+          <span class="tag">01 · PREVENCIÓN</span>
+          <h3>Para no lesionarte</h3>
+          <p>Detectamos lo que aún no ha pasado y entrenamos para que no pase: carga bien dosificada, puntos débiles trabajados y un plan que encaja con tu temporada.</p>
+        </article>
+        <article class="path">
+          <span class="tag">02 · READAPTACIÓN</span>
+          <h3>Para volver</h3>
+          <p>Si ya te has lesionado, guiamos la vuelta por fases. Pasas de una a otra cuando cumples los criterios, no cuando lo dice el calendario.</p>
+        </article>
+        <article class="path">
+          <span class="tag">03 · RENDIMIENTO</span>
+          <h3>Para rendir sin romperte</h3>
+          <p>Fuerza, potencia y transferencia a tu deporte, con la regulación como base para que puedas sostener la carga toda la temporada.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="lineas">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Líneas</p>
+        <h2>Elige tu línea.</h2>
+        <p>El método y los tres planes son los mismos. Cambia lo que medimos, cómo planificamos y con quién nos coordinamos, según tu deporte.</p>
+      </div>
+      <div class="lines">
+        <article class="line">
+          <p class="line-name">Psoul Lab <b>Endurance</b></p>
+          <p class="line-for">Running, trail, ciclismo y triatlón.</p>
+          <dl>
+            <div><dt>Prevención</dt><dd>Fuerza y prevención coordinadas con el plan de carrera que ya sigues.</dd></div>
+            <div><dt>Readaptación</dt><dd>De los primeros trotes a tu ritmo de competición, por fases y criterios.</dd></div>
+            <div><dt>Rendimiento</dt><dd>Planificamos también tu carrera, de la media maratón al trail de larga distancia: zonas, progresión y fuerza encajada en tu semana.</dd></div>
+          </dl>
+          <p class="line-note">Necesitas un reloj con GPS y pulso para poder dosificar la carga.</p>
+        </article>
+        <article class="line">
+          <p class="line-name">Psoul Lab <b>Team</b></p>
+          <p class="line-for">Fútbol, baloncesto, balonmano, pádel y otros deportes de equipo o de raqueta.</p>
+          <dl>
+            <div><dt>Prevención</dt><dd>Saltos, aterrizajes y cambios de dirección: lo que más lesiona en tu deporte.</dd></div>
+            <div><dt>Readaptación</dt><dd>De la primera carga al contacto y la competición, por fases y criterios.</dd></div>
+            <div><dt>Rendimiento</dt><dd>Fuerza, potencia y transferencia a tu deporte, coordinadas con tu club o tu entrenador.</dd></div>
+          </dl>
+          <p class="line-note">Nos coordinamos con tu cuerpo técnico. Psoul Lab suma a tu equipo; no lo sustituye.</p>
+        </article>
+      </div>
+      <p class="lines-other">¿Practicas otro deporte? También trabajamos contigo: cuéntanoslo al pedir tu valoración.</p>
+    </div>
+  </section>
+
+  <section id="como-funciona">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Cómo funciona</p>
+        <h2>Prevenir también se entrena.</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="n">01</span>
+          <div>
+            <h3>Valoración objetiva</h3>
+            <p>Empezamos midiendo. La valoración sirve para prevenir lo que aún no ha pasado y para guiar la vuelta de lo que ya pasó. Con ella fijamos los criterios de cada fase: la fase avanza por criterios, no por semanas.</p>
+            <p style="margin-top:10px">Si tienes club o entrenador, nos coordinamos con ellos desde el primer día. Psoul Lab suma a tu equipo; no lo sustituye.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">02</span>
+          <div>
+            <h3>Sesiones en cuatro bloques</h3>
+            <p>Cada sesión sigue la misma estructura, siempre en el mismo orden.</p>
+            <div class="rodt">
+              <div class="r"><b>R</b><span>Regulación. Preparar el sistema.</span></div>
+              <div><b>O</b><span>Organización. Ordenar el patrón.</span></div>
+              <div><b>D</b><span>Diana. Cargar el estímulo de la sesión.</span></div>
+              <div><b>T</b><span>Transferencia. Llevarlo a tu deporte.</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">03</span>
+          <div>
+            <h3>Cabeza y entorno</h3>
+            <p>Psicología del deporte con Miguel Sáenz: miedo a recaer, confianza y vuelta a competir. Y una pauta de descanso, música y lectura para las otras veintidós horas del día.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="simbolo">
+    <div class="wrap sym-grid">
+      <svg class="sym-mark" width="280" height="280" viewBox="0 0 140 140" role="img" aria-label="Símbolo de Psoul Lab">
+        <path d="M70 10 A60 60 0 1 1 11.20 81.96" fill="none" stroke="var(--accent)" stroke-width="12" stroke-linecap="round"/>
+        <circle cx="70" cy="70" r="40" fill="var(--accent)"/>
+      </svg>
+      <div>
+        <div class="sec-head" style="margin-bottom:28px">
+          <p class="eyebrow">El símbolo</p>
+          <h2>Nuestro símbolo resume cómo trabajamos.</h2>
+        </div>
+        <dl class="sym-legend">
+          <div><dt>El arco</dt><dd>Es la Regulación: antes de cargar, preparamos el sistema.</dd></div>
+          <div><dt>El disco</dt><dd>Es la Diana: el estímulo que da sentido a cada sesión.</dd></div>
+          <div><dt>La apertura</dt><dd>El arco queda abierto porque tu proceso sigue en marcha. Solo se cierra el día del alta.</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="tarifas">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Tarifas</p>
+        <h2>Tres planes. Nada más.</h2>
+        <p>Todos incluyen la valoración inicial. La contratación es trimestral, porque cualquier cambio real necesita al menos tres meses. Precios con IVA incluido.</p>
+      </div>
+      <div class="prices">
+        <article class="price">
+          <span class="tag">PREVENCIÓN</span>
+          <h3>Para no lesionarte</h3>
+          <p class="amount">99 €<small>/ mes</small></p>
+          <p class="quarter">297 € por trimestre</p>
+          <ul>
+            <li>Valoración objetiva inicial</li>
+            <li>Plan de prevención online adaptado a tu deporte</li>
+            <li>Sesiones con estructura R·O·D·T</li>
+            <li>Seguimiento y ajustes del plan</li>
+          </ul>
+        </article>
+        <article class="price featured">
+          <span class="tag">READAPTACIÓN</span>
+          <h3>Para volver</h3>
+          <p class="amount">290 €<small>/ mes</small></p>
+          <p class="quarter">870 € por trimestre</p>
+          <ul>
+            <li>Valoración objetiva inicial y por fase</li>
+            <li>Readaptación por fases y criterios</li>
+            <li>Sesiones con estructura R·O·D·T</li>
+            <li>Una sesión al mes de psicología del deporte con Miguel Sáenz</li>
+            <li>Pauta de descanso, música y lectura</li>
+          </ul>
+          <p class="note">Plazas de readaptación muy limitadas.</p>
+        </article>
+        <article class="price">
+          <span class="tag">RENDIMIENTO</span>
+          <h3>Para rendir sin romperte</h3>
+          <p class="amount">210 €<small>/ mes</small></p>
+          <p class="quarter">630 € por trimestre</p>
+          <ul>
+            <li>Valoración objetiva inicial</li>
+            <li>Planificación de fuerza y transferencia a tu deporte, coordinada con tu club o tu entrenador</li>
+            <li>Sesiones con estructura R·O·D·T</li>
+            <li>Una sesión al mes de psicología del deporte con Miguel Sáenz</li>
+            <li>Pauta de descanso, música y lectura</li>
+          </ul>
+        </article>
+      </div>
+      <p class="price-foot"><span>IVA INCLUIDO</span><span>CONTRATACIÓN TRIMESTRAL</span><span>VALORACIÓN INCLUIDA</span><span>100 % ONLINE</span></p>
+      <p class="deposit"><strong>Plazas para enero.</strong> La plaza se reserva con una señal del 10 % del trimestre (30 € en Prevención, 63 € en Rendimiento y 87 € en Readaptación). Se descuenta del primer pago y no se devuelve una vez hecha la valoración.<br>El trimestre se paga por adelantado o en dos pagos: 50 % el primer mes y 50 % el segundo. El tercer mes no se paga. Por Bizum o transferencia.</p>
+    </div>
+  </section>
+
+  <section id="equipo">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Equipo</p>
+        <h2>Quién está detrás.</h2>
+      </div>
+      <div class="team">
+        <article class="person">
+          <img src="img/daniel-gama.jpg" alt="Daniel Gama sonriendo junto a un rack de entrenamiento" width="640" height="800" loading="lazy">
+          <span class="role">Dirección técnica</span>
+          <h3>Daniel Gama</h3>
+          <p>Fisioterapeuta y readaptador. Fundador de Homo Plasticus, donde forma a profesionales en neurociencia aplicada al movimiento, y tutor y docente en varios másteres universitarios. CEO de Moverte da Vida, centro de salud y ejercicio en Puente Genil. Medalla de plata en el Eurobasket sub-20 y corredor amateur de trail. Diseña y sigue cada plan de Psoul Lab.</p>
+        </article>
+        <article class="person">
+          <img src="img/miguel-saenz.jpg" alt="Retrato de Miguel Sáenz" width="640" height="800" loading="lazy">
+          <span class="role">Psicología y readaptación</span>
+          <h3>Miguel Sáenz</h3>
+          <p>Psicólogo, readaptador y osteópata. Creador del Modelo de la Experiencia Humana, un marco de trabajo con cinco ejes: cuerpo, sensación, interpretación, patrón y conciencia. Docente en Homo Plasticus Academy. En Psoul Lab trabaja el miedo a recaer, la confianza y la vuelta a competir.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="close" id="contacto">
+    <div class="wrap">
+      <p class="eyebrow" style="color:var(--lab-accent)">Pide tu valoración</p>
+      <h2 style="margin-top:16px">¿Hablamos de tu temporada?</h2>
+      <p>Responde estas preguntas y envíalas por WhatsApp. Con ellas Daniel prepara tu valoración y te propone día y hora.</p>
+      <form class="val-form" id="val-form" novalidate>
+        <label class="f"><span>Nombre</span><input id="f-nombre" type="text" autocomplete="given-name" required></label>
+        <label class="f"><span>Edad</span><input id="f-edad" type="number" inputmode="numeric" min="12" max="90"></label>
+        <label class="f f-wide"><span>Línea</span>
+          <select id="f-linea"><option value="">Elige</option><option>Endurance (running, trail, ciclismo, triatlón)</option><option>Team (deportes de equipo o raqueta)</option><option>Otro deporte</option></select></label>
+        <label class="f"><span>Deporte</span><input id="f-deporte" type="text" placeholder="Trail, fútbol, pádel…" required></label>
+        <label class="f"><span>Nivel</span>
+          <select id="f-nivel"><option value="">Elige</option><option>Recreativo</option><option>Amateur federado</option><option>Competición</option><option>Profesional</option></select></label>
+        <fieldset class="f f-wide"><legend>¿Qué necesitas?</legend>
+          <div class="chips">
+            <label><input type="radio" name="f-obj" value="Prevención: no lesionarme"><span>Prevención: no lesionarme</span></label>
+            <label><input type="radio" name="f-obj" value="Readaptación: volver de una lesión"><span>Readaptación: volver de una lesión</span></label>
+            <label><input type="radio" name="f-obj" value="Rendimiento: rendir más"><span>Rendimiento: rendir más</span></label>
+          </div></fieldset>
+        <label class="f f-wide"><span>¿Tienes alguna lesión o molestia ahora? ¿Desde cuándo?</span><input id="f-lesion" type="text" placeholder="Ninguna / tobillo derecho desde octubre…"></label>
+        <label class="f"><span>Días por semana que entrenas</span>
+          <select id="f-dias"><option value="">Elige</option><option>1–2</option><option>3–4</option><option>5 o más</option></select></label>
+        <label class="f"><span>¿Club o entrenador?</span>
+          <select id="f-club"><option value="">Elige</option><option>Sí</option><option>No</option></select></label>
+        <label class="f f-wide"><span>Próxima competición u objetivo y fecha</span><input id="f-meta" type="text" placeholder="Media maratón de Sevilla, febrero…"></label>
+        <label class="f-wide consent"><input type="checkbox" id="f-consent"><span>Acepto la <a href="legal.html#privacidad" target="_blank" rel="noopener">política de privacidad</a> y que Psoul Lab trate los datos de salud que comparto para preparar mi valoración.</span></label>
+        <div class="f-wide send-row">
+          <a class="btn btn-solid" id="wa-send" href="https://wa.me/34622784703" target="_blank" rel="noopener">Enviar por WhatsApp</a>
+          <p class="form-msg" id="form-msg" role="status"></p>
+        </div>
+        <p class="f-wide legal">Usamos estos datos solo para preparar tu valoración. No los compartimos con nadie. Consulta las <a href="legal.html#condiciones" target="_blank" rel="noopener">condiciones de contratación</a>.</p>
+      </form>
+      <p class="alt-contact">¿Prefieres escribirnos sin más? <a href="https://www.instagram.com/psoullab/" target="_blank" rel="noopener">Mensaje directo en Instagram</a> · <span class="handle">@psoullab</span></p>
+      <dl class="contact-list">
+        <div><dt>Correo</dt><dd>psoulbodymind@gmail.com</dd></div>
+      </dl>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Psoul Lab · Un proyecto de Psoul Body Mind</span>
+    <span>Metodología aplicada por el equipo de Homo Plasticus</span>
+    <span><a href="legal.html#aviso-legal">Aviso legal</a> · <a href="legal.html#privacidad">Privacidad</a> · <a href="legal.html#condiciones">Condiciones</a></span>
+  </div>
+</footer>
+<script>
+(function(){
+  var PHONE='34622784703';
+  var a=document.getElementById('wa-send'), msg=document.getElementById('form-msg');
+  function v(id){var el=document.getElementById(id);return el?el.value.trim():'';}
+  function obj(){var r=document.querySelector('input[name="f-obj"]:checked');return r?r.value:'';}
+  function build(){
+    var L=['Hola, Psoul Lab. Quiero pedir mi valoración.',''];
+    function add(k,val){L.push(k+': '+(val||'—'));}
+    add('Nombre',v('f-nombre'));add('Edad',v('f-edad'));add('Línea',v('f-linea'));add('Deporte',v('f-deporte'));add('Nivel',v('f-nivel'));
+    add('Qué necesito',obj());add('Lesión o molestia',v('f-lesion'));add('Días que entreno',v('f-dias'));
+    add('Club o entrenador',v('f-club'));add('Próximo objetivo',v('f-meta'));
+    return 'https://wa.me/'+PHONE+'?text='+encodeURIComponent(L.join('\n'));
+  }
+  function refresh(){a.href=build();}
+  document.getElementById('val-form').addEventListener('input',refresh);
+  document.getElementById('val-form').addEventListener('change',refresh);
+  document.getElementById('val-form').addEventListener('submit',function(e){e.preventDefault();});
+  a.addEventListener('click',function(e){
+    var miss=[];
+    ['f-nombre','f-deporte'].forEach(function(id){var el=document.getElementById(id);var bad=!el.value.trim();el.classList.toggle('invalid',bad);if(bad)miss.push(id==='f-nombre'?'tu nombre':'tu deporte');});
+    if(!obj())miss.push('qué necesitas');
+    if(!document.getElementById('f-consent').checked)miss.push('aceptar la política de privacidad');
+    if(miss.length){e.preventDefault();msg.textContent='Falta '+miss.join(', ')+'.';return;}
+    msg.textContent='';refresh();
+  });
+  refresh();
+})();
+</script>
+
+</body>
+</html>
